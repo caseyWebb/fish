@@ -1,0 +1,8 @@
+fish_variables
+functions/fisher.fish
+functions/__z*.fish
+conf.d/z.fish
+conf.d/rustup.fish
+completions/
+themes/
+.claude/
