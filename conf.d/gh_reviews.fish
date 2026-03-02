@@ -5,8 +5,8 @@ end
 function __gh_reviews_fetch
 	mkdir -p ~/.cache/fish
 	gh search prs --review-requested=@me --state=open \
-		--json repository,title,number,url \
-		--template '{{range .}}{{.repository.nameWithOwner}}#{{.number}} - {{.title}}{{"\n"}}{{.url}}{{"\n"}}{{end}}' \
+		--json repository,title,number,url,author \
+		--template '{{range .}}{{.repository.nameWithOwner}}#{{.number}} - {{.title}} ({{.author.login}}){{"\n"}}{{.url}}{{"\n"}}{{end}}' \
 		> ~/.cache/fish/gh_review_requests 2>/dev/null
 end
 
@@ -14,8 +14,8 @@ end
 fish -c "
 	mkdir -p ~/.cache/fish
 	gh search prs --review-requested=@me --state=open \
-		--json repository,title,number,url \
-		--template '{{range .}}{{.repository.nameWithOwner}}#{{.number}} - {{.title}}{{\"\n\"}}{{.url}}{{\"\n\"}}{{end}}' \
+		--json repository,title,number,url,author \
+		--template '{{range .}}{{.repository.nameWithOwner}}#{{.number}} - {{.title}} ({{.author.login}}){{\"\n\"}}{{.url}}{{\"\n\"}}{{end}}' \
 		> ~/.cache/fish/gh_review_requests 2>/dev/null
 " &
 disown
